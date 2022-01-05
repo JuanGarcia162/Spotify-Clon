@@ -6,7 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./media-player.component.css']
 })
 export class MediaPlayerComponent implements OnInit {
-
+  mockCover: any = {
+    cover: 'https://cdns-images.dzcdn.net/images/cover/ba5eaf2f3a49768164d0728b7ba64372/500x500.jpg',
+    album: 'AC/DC',
+    name: 'T.N.T. (Live At River Plate, December 2009)'
+  }
   constructor() { }
 
   ngOnInit(): void {
