@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-section-generic',
@@ -6,7 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./section-generic.component.css']
 })
 export class SectionGenericComponent implements OnInit {
-
+  @Input() title: string = ''
+  @Input() mode: 'small' | 'big' = 'small'
+  @Input() dataTracks : Array<any> = 
+  [
+    
+  ]
   constructor() { }
 
   ngOnInit(): void {
