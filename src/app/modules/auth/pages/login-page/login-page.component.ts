@@ -27,4 +27,10 @@ export class LoginPageComponent implements OnInit {
     )
   }
 
+  sendLogin(): void
+  {
+    const body = this.formLogin.value
+    console.log('🤞🤞', body);
+  }
+
 }
