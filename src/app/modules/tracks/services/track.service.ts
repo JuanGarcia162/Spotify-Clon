@@ -3,7 +3,7 @@ import { environment } from './../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map, mergeMap } from 'rxjs/operators';
+import { map, mergeMap, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -35,8 +35,9 @@ export class TrackService {
    getAllRandom$():Observable<any>{
     return this.httpClient.get(`${this.URL}/tracks`)
     .pipe(
-      mergeMap(({data}: any) => this.skipById(data,1))
-
+      tap(data => console.log('🎆🎆',data)),
+      mergeMap(({data}: any) => this.skipById(data,1)),
+      tap(data => console.log('🎆🎆🎆🎆',data))
     )
    }
 }
