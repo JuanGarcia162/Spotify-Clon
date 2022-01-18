@@ -2,8 +2,8 @@ import { TrackModel } from './../../../core/models/tracks.model';
 import { environment } from './../../../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map, mergeMap, tap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { map, mergeMap, tap, catchError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +37,12 @@ export class TrackService {
     .pipe(
       tap(data => console.log('🎆🎆',data)),
       mergeMap(({data}: any) => this.skipById(data,1)),
-      tap(data => console.log('🎆🎆🎆🎆',data))
+      tap(data => console.log('🎆🎆🎆🎆',data)),
+      catchError(err =>{
+        const {status, statusText} = err;
+        console.log('Algo paso revisame ⚠⚠⚠', [status,statusText]);
+        return of([])
+      })
     )
    }
 }
