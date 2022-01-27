@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '@modules/auth/services/auth.service';
 import { CookieService } from 'ngx-cookie-service';
 
@@ -12,7 +13,8 @@ export class LoginPageComponent implements OnInit {
   errorSesion: boolean = false
   formLogin: FormGroup = new FormGroup({});
 
-  constructor(private auhtService: AuthService, private cookie:CookieService) { }
+  constructor(private auhtService: AuthService, private cookie:CookieService,
+    private router: Router) { }
 
   ngOnInit(): void {
 
@@ -39,6 +41,7 @@ export class LoginPageComponent implements OnInit {
       console.log('Inicio de Sesion correcto', responseOk)
       const {tokenSession, data} = responseOk
       this.cookie.set('token', tokenSession, 4, '/')
+      this.router.navigate(['/','tracks'])
     }, err => {
       this.errorSesion = true
       console.log('Ocurrio un error con tus credenciales')
