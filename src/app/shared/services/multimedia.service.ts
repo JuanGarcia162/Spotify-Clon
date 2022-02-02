@@ -7,27 +7,35 @@ import { BehaviorSubject, Observable, Observer, Subject } from 'rxjs';
 export class MultimediaService {
   callback: EventEmitter<any> = new EventEmitter<any>()
 
-  myObservable1$: Observable<any> = new Observable()
+  myObservable1$: BehaviorSubject<any> = new BehaviorSubject('✔✔')
 
   constructor() {
 
-    this.myObservable1$ = new Observable(
-      (observer: Observer<any>) => {
-        observer.next('✔')
+    setTimeout(() => {
+      this.myObservable1$.next('✔✔')
+    }, 1000)
 
-        setTimeout(() => {
-          observer.complete()
-        }, 1000);
+    setTimeout(() => {
+      this.myObservable1$.error('❌❌')
+    }, 2000)
 
-        setTimeout(() => {
-          observer.next('✔')
-        }, 2500);
+    // this.myObservable1$ = new Observable(
+    //   (observer: Observer<any>) => {
+    //     observer.next('✔')
 
-        setTimeout(() => {
-          observer.error('❌')
-        }, 3500);
-      }
-    )
+    //     setTimeout(() => {
+    //       observer.complete()
+    //     }, 1000);
+
+    //     setTimeout(() => {
+    //       observer.next('✔')
+    //     }, 2500);
+
+    //     setTimeout(() => {
+    //       observer.error('❌')
+    //     }, 3500);
+    //   }
+    // )
     
   }
 
